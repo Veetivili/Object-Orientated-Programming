@@ -9,12 +9,6 @@ namespace T8_Television
         public int chanel { get; set; }
         public int volume { get; set; }
         public bool power { get; set; }
-        //public Television(int Chanel, int Volume, bool Power)
-        //{
-        //    chanel = Chanel;
-        //    volume = Volume;
-        //    power = Power;
-        //}
         public string Power()
         {
             if (power == false)
@@ -42,6 +36,10 @@ namespace T8_Television
             {
                 return $"\n Chanel: {chanel}, MTV 3, Show: Kauniit ja Rohkeat";
             }
+            else if (chanel == 4)
+            {
+                return $"\n Chanel: {chanel}, Nelonen, Show: Selviytyjät Suomi";
+            }
             else
             {
                 return "No signal, try another chanel.";
@@ -63,43 +61,32 @@ namespace T8_Television
                         return television.power = true;                   
                 }
 
+                bool showMenu = true; // If showmenu is false, mainmenu isn't shown and program is stopped.
+
+                Console.WriteLine("Press [1] To turn on TV.");
+                int startTv = Convert.ToInt32(Console.ReadLine());
+                if (startTv == 1) 
+                { 
                 // Default values when turning on TV
                 television.power = true;
-                television.chanel = 3;
+                television.chanel = 2;
                 television.volume = 12;
-
-                bool showMenu = true;
+                }
+                else { showMenu = false; }
+                
+                
+                
                 while (showMenu)
                 {
-                    
                     showMenu = MainMenu();
                 }
                 
+                // Programm is allways returning to this main menu after each loop.
+                // Choose function to be executed, new info (Volume, Chanel) is then shown on menu.
                 bool MainMenu()
                 {
-                    if (television.power != true)
-                    {
-                        Console.Clear();
-                        Console.WriteLine("\n Turn on TV: [1] \n Exit [2]");
-                        int choice = Convert.ToInt32(Console.ReadLine);
-                        if (choice == 1)
-                        {
-                            int meny = Convert.ToInt32(Console.ReadLine());
-                            switch (meny)
-                            {
-                                case 1:
-                                    TvPower();
-                                    return true;
-                                case 2:
-                                    return false;
-                                default: return true;
-
-                            }
-                        }
-
-
-
-                    }
+                    
+                    
                     Console.WriteLine($"{television.Power()}");
                     Console.WriteLine($"\n1) Change Volume \n2) Change Chanel \n3) Power On/off");
 
@@ -114,44 +101,43 @@ namespace T8_Television
                             return true;
                         case 3:
                             TvPower();
-                            return true;
+                            return showMenu=false;
                         default: return true;
 
                     }
 
-                    bool ChangeShow()
+                    void ChangeShow()
                     {
-                        Console.WriteLine("Next chanel [1], Previous chanel [2]");
+                        Console.Clear();
+                        Console.WriteLine("Previous chanel [1], Next chanel [2]");
                         int choice = Convert.ToInt32(Console.ReadLine());
 
                         switch (choice)
                         {
                             case 1:
-                                television.chanel++;
-                                Console.WriteLine(television.ChangeChanel());
-                                return true;
-                            case 2:
                                 television.chanel--;
                                 Console.WriteLine(television.ChangeChanel());
-                                return true;
+                                break;
+                            case 2:
+                                television.chanel++;
+                                Console.WriteLine(television.ChangeChanel());
+                                break;
                         }
-                        
-                        return true;
                     }
 
 
                     void ChangeVolume()
                     {
+                        Console.Clear();
                         Console.WriteLine("\n Volume down [1], Volume up [2].");
                         int choice = Convert.ToInt32(Console.ReadLine());
                         ConsoleKeyInfo keyinfo;
-                        Console.WriteLine("\n Press [X] to save volume. \n Press enter to keep changing volume");
+                        Console.WriteLine("\n Press enter to keep changing volume \n Press [X] to save volume.");
                         do
                         {
                             keyinfo = Console.ReadKey();
                             switch (choice)
                             {
-
                                 case 1:
                                     television.volume--;
                                     Console.WriteLine($"{television.volume}");
@@ -160,21 +146,13 @@ namespace T8_Television
                                     television.volume++;
                                     Console.WriteLine($"{television.volume}");
                                     break;
-
                             }
                         }
                         while (keyinfo.Key != ConsoleKey.X);
+                        Console.Clear();
                         Console.WriteLine($"Volume set to: {television.volume}");
                     }
-                }
-                
-
-
-
-
-
-
-
+                }       
             }
         }
     }
