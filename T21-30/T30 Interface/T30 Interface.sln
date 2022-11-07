@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32901.215
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "T30 Interface", "T30 Interface.csproj", "{40C835A1-0444-4B31-B08F-0332090CD951}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{40C835A1-0444-4B31-B08F-0332090CD951}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40C835A1-0444-4B31-B08F-0332090CD951}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40C835A1-0444-4B31-B08F-0332090CD951}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40C835A1-0444-4B31-B08F-0332090CD951}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3B4A74C4-230A-411E-A1FA-3D0869C3F6C9}
+	EndGlobalSection
+EndGlobal
